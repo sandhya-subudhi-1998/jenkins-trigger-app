@@ -14,7 +14,8 @@ node {
     }
     stage('Deploy'){
 
-        sh "ansible-playbook deploytohost.yml"
+        //sh "ansible-playbook deploytohost.yml"
+        ansiblePlaybook credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible-2.9.6', inventory: 'dev.inv', playbook: 'deploytohost.yml'
     }
     stage('Complete'){
 
