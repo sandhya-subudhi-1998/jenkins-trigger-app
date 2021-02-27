@@ -1,12 +1,23 @@
 node {
 
-    checkout scm
+    stage('Start'){
+        checkout scm
+    }
+    stage('Docker Image Build & Push'){
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
 
-    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
+            def customImage = docker.build("sandhyasubudhi1998/jenkins-trigger-web")
 
-        def customImage = docker.build("sandhyasubudhi1998/jenkins-trigger-app-1")
+            /* Push the container to the custom Registry */
+            customImage.push()
+        }
+    }
+    stage('Deploy'){
 
-        /* Push the container to the custom Registry */
-        customImage.push()
+        sh "ansible-playbook deploytohost.yml"
+    }
+    stage('Complete'){
+
+        sh "echo 'Build Successful'"
     }
 }
