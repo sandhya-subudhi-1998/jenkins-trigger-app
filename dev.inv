@@ -1,2 +1,2 @@
 [dockerserver]
-192.168.1.8 ansible_user=sandhya ansible_sudo_pass=tara1998@
+192.168.1.13 ansible_user=sandhya ansible_sudo_pass=tara1998@
