@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
 
     // axios package is used to fetch jenkins job details from jenkins rest api end point
-    axios.get("http://192.168.1.9:8080/api/json?tree=jobs[name,description,url]",
+    axios.get("http://192.168.1.14:8080/api/json?tree=jobs[name,description,url]",
       {
         // Basic HTTP Authentication done with auth property of axios
         auth: {
